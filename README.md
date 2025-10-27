@@ -12,6 +12,7 @@
 | Backend      | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)                              | 비동기 Python 웹 프레임워크     |
 | Frontend     | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)                        | 대화형 데이터 대시보드          |
 | AI Framework | ![LangChain](https://img.shields.io/badge/LangChain-ffffff?logo=langchain&logoColor=green)                                   | LLM 기반 응용 개발 프레임워크   |
+| AI Framework | ![LangGraph](https://img.shields.io/badge/LangGraph-0.2.65-green?style=flat-square)                                          | LLM 기반 응용 개발 프레임워크   |
 | Database     | ![PostgreSQL](<https://img.shields.io/badge/PostgreSQL%20(pgvector%2017)-336791?style=flat&logo=postgresql&logoColor=white>) | 벡터 임베딩 및 유사도 검색 지원 |
 
 <br><br>
@@ -119,3 +120,12 @@ bash scripts/run_backend.sh
 
 프로젝트의 코드 스타일, 브랜치 전략, 커밋 규칙 등은 아래 문서에서 확인할 수 있습니다.  
 ➡️ [개발 규칙 바로가기](./documents/개발_규칙.md)
+
+<br><br>
+
+## 🪛 제공된 리소스
+
+| 항목                         | 구성 / 한도                     | 비고                        |
+| ---------------------------- | ------------------------------- | --------------------------- |
+| **☁️ Oracle Cloud EC2 서버** | CPU: 0 / Memory: 0 / Storage: 0 | 프로젝트 서버 환경          |
+| **🧠 Gemini 또는 GPT API**   | 사용 한도: 200,000원            | 모델 호출 및 분석 기능 제공 |
