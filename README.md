@@ -34,6 +34,7 @@ healthcare_ai_agent/
 │
 ├── documents/                        # 프로젝트 문서
 ├── backend/                          # FastAPI 백엔드 애플리케이션
+│   ├── .env                         # 백엔드 환경변수 (DB, LLM API 키 등)
 │   ├── app/
 │   │   ├── api/                     # API 레이어 - HTTP 인터페이스
 │   │   │   └── v1/                 # API 버전 1
@@ -51,6 +52,7 @@ healthcare_ai_agent/
 │   └── tests/                       # 백엔드 테스트
 │
 ├── frontend/                        # Streamlit 프론트엔드 애플리케이션
+│   ├── .env                         # 프론트엔드 환경변수 (Backend API URL, 지도 API 키 등)
 │   ├── .streamlit/                 # Streamlit 설정
 │   ├── components/                 # 재사용 가능한 UI 컴포넌트
 │   ├── pages/                      # 멀티페이지 앱 구조
@@ -116,4 +118,4 @@ bash scripts/run_backend.sh
 ## 🧭 개발 규칙
 
 프로젝트의 코드 스타일, 브랜치 전략, 커밋 규칙 등은 아래 문서에서 확인할 수 있습니다.  
-➡️ [개발 규칙 바로가기](./docs/DEVELOP_RULES.md)
+➡️ [개발 규칙 바로가기](./documents/개발_규칙.md)
