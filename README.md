@@ -9,6 +9,7 @@
 
 | 구분         | 기술                                                                                                                         | 설명                            |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| Language     | ![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat&logo=python&logoColor=white)                           | Python 3.10                     |
 | Backend      | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)                              | 비동기 Python 웹 프레임워크     |
 | Frontend     | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)                        | 대화형 데이터 대시보드          |
 | AI Framework | ![LangChain](https://img.shields.io/badge/LangChain-ffffff?logo=langchain&logoColor=green)                                   | LLM 기반 응용 개발 프레임워크   |
