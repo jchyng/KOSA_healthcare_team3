@@ -9,7 +9,7 @@
 
 | 구분         | 기술                                                                                                                         | 설명                            |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| Language     | ![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat&logo=python&logoColor=white)                           | Python 3.10                     |
+| Language     | ![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat&logo=python&logoColor=white)                            | Python 3.10                     |
 | Backend      | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)                              | 비동기 Python 웹 프레임워크     |
 | Frontend     | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)                        | 대화형 데이터 대시보드          |
 | AI Framework | ![LangChain](https://img.shields.io/badge/LangChain-ffffff?logo=langchain&logoColor=green)                                   | LLM 기반 응용 개발 프레임워크   |
@@ -34,7 +34,6 @@
 ```
 healthcare_ai_agent/
 │
-├── documents/                        # 프로젝트 문서
 ├── backend/                          # FastAPI 백엔드 애플리케이션
 │   ├── .env                         # 백엔드 환경변수 (DB, LLM API 키 등)
 │   ├── app/
@@ -47,9 +46,22 @@ healthcare_ai_agent/
 │   │   │   ├── llm/                # LLM 통합 레이어
 │   │   │   └── tools/              # 에이전트 도구 및 유틸리티
 │   │   │
+│   │   ├── db/                      # 데이터베이스 관리 (SQLAlchemy 2.0)
+│   │   │   ├── base.py             # Base 모델 및 Mixin
+│   │   │   ├── session.py          # 비동기 세션 관리
+│   │   │   ├── checkpointer.py     # LangGraph 체크포인터
+│   │   │   └── models/             # SQLAlchemy ORM 모델
+│   │   │
 │   │   ├── models/                  # Pydantic 모델 (스키마)
 │   │   ├── services/                # 비즈니스 로직 서비스
 │   │   └── utils/                   # 유틸리티 함수
+│   │
+│   ├── docs/                        # 백엔드 문서
+│   │   ├── 아키텍처.md              # 시스템 아키텍처 문서
+│   │   └── database_guide.md       # DB 모듈 사용 가이드
+│   │
+│   ├── scripts/                     # 백엔드 실행 스크립트
+│   │   └── run_server.sh           # FastAPI 서버 실행
 │   │
 │   └── tests/                       # 백엔드 테스트
 │
@@ -59,10 +71,12 @@ healthcare_ai_agent/
 │   ├── components/                 # 재사용 가능한 UI 컴포넌트
 │   ├── pages/                      # 멀티페이지 앱 구조
 │   ├── services/                   # 프론트엔드 서비스 레이어
-│   └── utils/                      # 프론트엔드 유틸리티
+│   ├── utils/                      # 프론트엔드 유틸리티
+│   └── docs/                       # 프론트엔드 문서 (향후 추가)
 │
-├── shared/                          # 백엔드/프론트엔드 공유 코드
-└── scripts/                         # 개발 및 유틸리티 스크립트
+└── shared/                          # 공통 리소스
+    └── docs/                        # 프로젝트 공통 문서
+        └── 개발_규칙.md             # 코딩 컨벤션, Git 규칙 등
 ```
 
 <br><br>
@@ -112,7 +126,12 @@ pip install -r requirements.txt
 ### 4️⃣ 서버 실행
 
 ```bash
-bash scripts/run_backend.sh
+# 프로젝트 root에서
+bash backend/scripts/run_server.sh
+
+# 또는 backend 폴더에서
+cd backend
+bash scripts/run_server.sh
 ```
 
 ### 5️⃣ 클라이언트 실행
@@ -125,14 +144,14 @@ streamlit run app.py
 
 ## 🧭 개발 규칙
 
-프로젝트의 코드 스타일, 브랜치 전략, 커밋 규칙 등은 아래 문서에서 확인할 수 있습니다.  
-➡️ [개발 규칙 바로가기](./documents/개발_규칙.md)
+프로젝트의 코드 스타일, 브랜치 전략, 커밋 규칙 등은 아래 문서에서 확인할 수 있습니다.
+➡️ [개발 규칙 바로가기](./shared/docs/개발_규칙.md)
 
 <br><br>
 
 ## 🪛 제공된 리소스
 
-| 항목                         | 구성 / 한도                     | 비고                        |
-| ---------------------------- | ------------------------------- | --------------------------- |
-| **☁️ Oracle Cloud EC2 서버** | CPU: 0 / Memory: 0 / Storage: 0 | 프로젝트 서버 환경          |
-| **🧠 Gemini 또는 GPT API**   | 사용 한도: 200,000원            | 모델 호출 및 분석 기능 제공 |
+| 항목                         | 구성 / 한도                            | 비고                        |
+| ---------------------------- | -------------------------------------- | --------------------------- |
+| **☁️ Oracle Cloud EC2 서버** | vCPU: 2 / Memory: 8GB / Storage: 100GB | 프로젝트 서버 환경          |
+| **🧠 Gemini 또는 GPT API**   | 사용 한도: 200,000원                   | 모델 호출 및 분석 기능 제공 |

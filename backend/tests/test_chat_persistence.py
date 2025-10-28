@@ -36,7 +36,7 @@ def send_message(session_id: str, message: str):
 
     except requests.exceptions.ConnectionError:
         print("❌ 서버 연결 실패. 서버가 실행 중인지 확인해주세요.")
-        print("   실행 명령: bash scripts/run_backend.sh")
+        print("   실행 명령: bash scripts/run_server.sh")
         exit(1)
     except Exception as e:
         print(f"❌ 오류 발생: {e}")
@@ -111,7 +111,7 @@ def main():
             exit(1)
     except:
         print("❌ 서버에 연결할 수 없습니다.")
-        print("   실행 명령: bash scripts/run_backend.sh")
+        print("   실행 명령: bash scripts/run_server.sh")
         exit(1)
 
     # 테스트 실행
@@ -123,7 +123,7 @@ def main():
     print("✅ 모든 테스트 완료!")
     print("="*60)
     print("\n💡 수동 테스트 방법:")
-    print("   1. 서버 재시작: Ctrl+C 후 bash scripts/run_backend.sh")
+    print("   1. 서버 재시작: Ctrl+C 후 bash scripts/run_server.sh")
     print(f"   2. 같은 세션 ID로 테스트: session_id={original_session_id}")
     print("   3. 이전 대화 내용을 기억하는지 확인")
 
