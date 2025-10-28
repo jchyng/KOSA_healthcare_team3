@@ -114,6 +114,12 @@ pip install -r requirements.txt
 bash scripts/run_backend.sh
 ```
 
+### 5️⃣ 클라이언트 실행
+
+```bash
+streamlit run app.py
+```
+
 <br><br>
 
 ## 🧭 개발 규칙
