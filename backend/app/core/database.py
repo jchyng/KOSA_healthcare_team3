@@ -5,6 +5,8 @@ import os
 from typing import Optional
 from dotenv import load_dotenv
 from langgraph.checkpoint.postgres import PostgresSaver
+import psycopg
+from psycopg_pool import ConnectionPool
 
 # 환경변수 로드
 load_dotenv()
@@ -66,10 +68,17 @@ def get_postgres_checkpointer() -> PostgresSaver:
         try:
             database_url = get_database_url()
 
+            # 연결 풀 생성 (연결이 지속되도록 유지)
+            connection_pool = ConnectionPool(
+                conninfo=database_url,
+                min_size=1,
+                max_size=10
+            )
+
             # PostgresSaver 초기화
-            # - 자동으로 checkpoints 테이블 생성
+            # - 연결 풀을 직접 전달하여 연결 유지
             # - thread_id (session_id) 기반으로 대화 히스토리 관리
-            _checkpointer = PostgresSaver.from_conn_string(database_url)
+            _checkpointer = PostgresSaver(connection_pool)
 
             # 테이블 생성 (이미 존재하면 무시됨)
             _checkpointer.setup()

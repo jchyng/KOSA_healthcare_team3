@@ -1,15 +1,17 @@
-#!/usr/bin/env python3
 """
-PostgreSQL 기반 대화 영구 저장 테스트 스크립트
+PostgreSQL 기반 대화 영구 저장 테스트
 
 사용법:
-    python scripts/test_persistent_chat.py
+    python backend/tests/test_chat_persistence.py
+    또는
+    cd backend && pytest tests/test_chat_persistence.py -v
 """
 import requests
 import uuid
 import time
 
 BASE_URL = "http://localhost:8000/api/v1/chat"
+
 
 def send_message(session_id: str, message: str):
     """메시지 전송 및 응답 출력"""
