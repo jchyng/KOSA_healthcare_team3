@@ -4,7 +4,7 @@ LangGraph + PostgresSaver를 활용한 멀티턴 대화 에이전트
 """
 from langgraph.prebuilt import create_react_agent
 from app.core.llm import get_llm
-from app.core.database import get_postgres_checkpointer
+from app.db import get_postgres_checkpointer
 from app.core.tools.hospital_tools import get_hospital_info, search_nearby_hospitals
 
 
@@ -27,10 +27,7 @@ def create_chat_agent():
     # PostgreSQL 기반 checkpointer 가져오기
     checkpointer = get_postgres_checkpointer()
 
-    # LangGraph ReAct 에이전트 생성
-    # - PostgresSaver를 checkpointer로 사용하여 대화 히스토리를 DB에 영구 저장
-    # - thread_id (session_id)를 기준으로 대화 컨텍스트 관리
-    # - 서버 재시작 후에도 대화 히스토리 유지
+    # LangGraph ReAct 에이전트 생성 (PostgresSaver로 대화 히스토리 영구 저장)
     agent = create_react_agent(
         model=llm,
         tools=tools,
