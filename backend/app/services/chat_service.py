@@ -32,16 +32,13 @@ async def process_chat(request: ChatRequest) -> ChatResponse:
     user_message = HumanMessage(content=request.message)
 
     try:
-        # 에이전트 호출 (동기 방식)
-        # LangGraph는 기본적으로 동기 실행
+        # 에이전트 호출
         result = agent.invoke(
             {"messages": [user_message]},
             config=config
         )
 
-        # 응답 메시지 추출
-        # result["messages"]는 대화 전체 히스토리를 포함
-        # 마지막 메시지가 에이전트의 최신 응답
+        # 응답 메시지 추출 (마지막 메시지가 최신 응답)
         ai_response = result["messages"][-1].content
 
         # 에이전트 실행 단계 추출 (디버깅용)
