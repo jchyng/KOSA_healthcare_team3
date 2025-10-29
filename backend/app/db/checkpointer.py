@@ -1,5 +1,8 @@
 """
-PostgreSQL 데이터베이스 연결 및 Checkpointer 관리
+PostgreSQL Checkpointer 관리 (LangGraph 전용)
+
+이 모듈은 LangGraph 에이전트의 대화 히스토리 저장을 위한 PostgresSaver를 관리합니다.
+일반적인 데이터베이스 쿼리는 session.py의 get_db()를 사용하세요.
 """
 import os
 from typing import Optional
@@ -12,9 +15,9 @@ from psycopg_pool import ConnectionPool
 load_dotenv()
 
 
-def get_database_url() -> str:
+def get_checkpointer_database_url() -> str:
     """
-    PostgreSQL 연결 문자열 반환
+    PostgreSQL 연결 문자열 반환 (psycopg 드라이버 사용)
 
     환경변수에서 DATABASE_URL을 우선 사용하고,
     없으면 개별 필드(DB_HOST, DB_PORT 등)로 구성
@@ -66,9 +69,9 @@ def get_postgres_checkpointer() -> PostgresSaver:
 
     if _checkpointer is None:
         try:
-            database_url = get_database_url()
+            database_url = get_checkpointer_database_url()
 
-            # 연결 풀 생성 (연결이 지속되도록 유지)
+            # 연결 풀 생성
             connection_pool = ConnectionPool(
                 conninfo=database_url,
                 min_size=1,
@@ -76,8 +79,6 @@ def get_postgres_checkpointer() -> PostgresSaver:
             )
 
             # PostgresSaver 초기화
-            # - 연결 풀을 직접 전달하여 연결 유지
-            # - thread_id (session_id) 기반으로 대화 히스토리 관리
             _checkpointer = PostgresSaver(connection_pool)
 
             # 테이블 생성 (이미 존재하면 무시됨)
@@ -101,7 +102,5 @@ def close_checkpointer():
     """
     global _checkpointer
     if _checkpointer:
-        # PostgresSaver는 연결 풀을 관리하므로 명시적 종료 불필요
-        # 애플리케이션 종료 시 자동으로 정리됨
         _checkpointer = None
         print("✅ PostgreSQL checkpointer 종료")
