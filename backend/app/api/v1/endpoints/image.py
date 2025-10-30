@@ -39,7 +39,8 @@ async def upload_image(
         return ImageUploadResponse(
             id=metadata.id,
             url=f"/api/v1/images/{metadata.id}",
-            original_filename=metadata.original_filename
+            filename=metadata.filename,
+            extension=metadata.extension
         )
 
     except Exception as e:
@@ -86,11 +87,10 @@ async def get_image(image_id: str):
         # 이미지 경로 가져오기
         image_path = get_image_path(image_id)
 
-        # 파일 응답 반환
+        # 파일 응답 반환 (브라우저에서 바로 표시)
         return FileResponse(
             path=image_path,
-            media_type="image/webp",
-            filename=f"{image_id}.webp"
+            media_type="image/webp"
         )
 
     except Exception as e:

@@ -49,7 +49,8 @@ def test_upload_image():
         print("✅ 이미지 업로드 성공!")
         print(f"  - 이미지 ID: {data['id']}")
         print(f"  - 조회 URL: {BASE_URL}{data['url']}")
-        print(f"  - 원본 파일명: {data['original_filename']}")
+        print(f"  - 파일명: {data['filename']}")
+        print(f"  - 확장자: {data['extension']}")
         return data["id"]
     else:
         print("❌ 이미지 업로드 실패")
@@ -76,7 +77,7 @@ def test_list_images():
         if data['images']:
             print("\n  📋 이미지 목록:")
             for img in data['images'][:5]:  # 최대 5개만 표시
-                print(f"    - {img['id']}: {img['original_filename']} ({img['file_size']} bytes)")
+                print(f"    - {img['id']}: {img['filename']}.{img['extension']} ({img['file_size']} bytes)")
     else:
         print("❌ 이미지 목록 조회 실패")
 
