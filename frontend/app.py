@@ -1,6 +1,5 @@
 import streamlit as st
 from components.chat_display import display_chat_history
-from components.file_download import download_multiple_formats
 
 # 페이지 설정
 st.set_page_config(page_title="HealthCare Agent", layout="wide")
@@ -26,17 +25,3 @@ if prompt := st.chat_input("증상을 입력하세요"):
 
     # 페이지 새로고침으로 메시지 표시
     st.rerun()
-
-# 사이드바: 파일 다운로드 기능
-with st.sidebar:
-    st.header("데이터 다운로드")
-
-    # 더미 데이터 생성
-    dummy_data = [
-        {"증상": "두통", "날짜": "2025-01-15", "강도": "중간"},
-        {"증상": "발열", "날짜": "2025-01-16", "강도": "높음"},
-        {"증상": "기침", "날짜": "2025-01-17", "강도": "낮음"}
-    ]
-
-    # 다운로드 버튼 표시
-    download_multiple_formats(dummy_data, prefix="health_data")
